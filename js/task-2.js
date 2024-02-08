@@ -1,32 +1,27 @@
 /** @format */
 
 class Storage {
-	constructor(items) {
-		this.items = items;
+	#items;
+
+	constructor(arrItems) {
+		this.#items = arrItems;
 	}
 	getItems() {
-		return this.items;
+		return this.#items;
 	}
 
 	addItem(newItem) {
-		return this.items.push(newItem);
+		return this.#items.push(newItem);
 	}
 
 	removeItem(itemToRemove) {
-		const indexToRemove = this.items.indexOf(itemToRemove);
-
-		let newArr = this.items
-			.slice(0, indexToRemove)
-			.concat(this.items.slice(2, 4));
-		return newArr;
+		this.#items.filter((item) => item !== itemToRemove);
 	}
 }
 
 const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+console.log(storage.getItems());
 storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+console.log(storage.getItems());
 storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
-
-//я використовую метод slice разом з indexOf, проте чогось не можу порізати масив. Сhat GPT видає мені метод splice для використання проте я не розумію чому саме його
+console.log(storage.getItems());
